@@ -74,5 +74,98 @@ public class ExerciciosTest {
         assertEquals(50, Exercicios.getSomaVetorPares(vetor, 0));
     }
 
+    @Test
+    public void QtdVetorescolhidoERetorna2() {
+        int vetor[] = {7,3,5,3};
+        assertEquals(2, Exercicios.getContaVetor(vetor, 0, 3));
+    }
+
+    @Test
+    public void QtdVetorescolhidoERetorna0() {
+        int vetor[] = {7,3,5,3};
+        assertEquals(0, Exercicios.getContaVetor(vetor, 0, 6));
+    }
+
+    @Test
+    public void QtdVetorescolhidoERetorna4() {
+        int vetor[] = {2,2,2,2};
+        assertEquals(4, Exercicios.getContaVetor(vetor, 0, 2));
+    }
+
+    @Test
+    public void QtdVetoresImparesERetorna3() {
+        int vetor[] = {7,3,5,2};
+        assertEquals(3, Exercicios.getContaVetorImpares(vetor, 0));
+    }
+
+    @Test
+    public void QtdVetoresImparesERetorna0() {
+        int vetor[] = {8,4,6,2};
+        assertEquals(0, Exercicios.getContaVetorImpares(vetor, 0));
+    }
+
+    @Test
+    public void EuclideERetorna18() {
+        assertEquals(18, Exercicios.getAlgoritimoEuclides(90, 54));
+    }
+
+    @Test
+    public void EuclideERetorna12() {
+        assertEquals(12, Exercicios.getAlgoritimoEuclides(348, 156));
+    }
+
+    @Test
+    public void EuclideERetornaExcessao() {
+        try {
+            Exercicios.getAlgoritimoEuclides(91, 54);
+            assertTrue(false);
+        }
+        catch (IllegalArgumentException ex) {
+            assertEquals("Numero invalidos", ex.getMessage());
+        }
+    }
+
+    @Test
+    public void MaiorVetorERetorna7() {
+        int vetor[] = {7,3,5,2};
+        assertEquals(7, Exercicios.getMaiorVetorPares(vetor,0, 0));
+    }
+
+    @Test
+    public void MaiorVetorERetorna9() {
+        int vetor[] = {7,3,8,9};
+        assertEquals(9, Exercicios.getMaiorVetorPares(vetor, 0 ,0));
+    }
+
+    @Test
+    public void somaCaracteresERetorna6() {
+        assertEquals(6, Exercicios.getSomaCaracteres(132));
+    }
+
+    @Test
+    public void somaCaracteresERetorna45() {
+        assertEquals(45, Exercicios.getSomaCaracteres(99999));
+    }
+
+    @Test
+    public void somaCaracteresERetorna45Negativo() {
+        assertEquals(-45, Exercicios.getSomaCaracteres(-99999));
+    }
+
+    @Test
+    public void somaCaracteresERetorna1110() {
+        assertEquals(1110, Exercicios.getBinario(14));
+    }
+
+    @Test
+    public void somaCaracteresERetorna1100() {
+        assertEquals(1100, Exercicios.getBinario(12));
+    }
+
+    @Test
+    public void somaCaracteresERetorna1110111100() {
+        assertEquals(1110111100, Exercicios.getBinario(956));
+    }
+
 
 }
