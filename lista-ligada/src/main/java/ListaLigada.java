@@ -1,5 +1,5 @@
 public class ListaLigada {
-    private Node head;
+    protected Node head;
 
     public ListaLigada() {
         head = new Node(null);

@@ -16,6 +16,23 @@ public class Teste {
         System.out.println(listaLigada.getTamanho()+"");
         System.out.println(listaLigada.removeNode(20)+"");
 
+        System.out.println("------------------");
+
+        ListaLigadaOrdenada listaLigadaOrdenada = new ListaLigadaOrdenada();
+
+        listaLigadaOrdenada.insereNode(11);
+        listaLigadaOrdenada.insereNode(5);
+        listaLigadaOrdenada.insereNode(10);
+        listaLigadaOrdenada.insereNode(1);
+        listaLigadaOrdenada.insereNode(20);
+
+        listaLigadaOrdenada.exibe();
+
+        System.out.println(listaLigadaOrdenada.getHead());
+        System.out.println(listaLigadaOrdenada.buscaNode(1));
+        System.out.println(listaLigadaOrdenada.getTamanho()+"");
+        System.out.println(listaLigadaOrdenada.removeNode(20)+"");
+
 
     }
 
