@@ -2,15 +2,14 @@ public class ListaLigadaOrdenada extends ListaLigada {
 
     @Override
     public void insereNode(Integer valor) {
-        Node ant = head.getNext();
-        Node atual = head;
+        Node ant = head;
+        Node atual = head.getNext();
 
         while (atual != null) {
             if (atual.getInfo() <= valor) {
-                atual.setNext(new Node(valor));
-
-                ant.setNext(head.getNext());
-                head.setNext(atual.getNext());
+                var node = new Node(valor);
+                ant.setNext(node);
+                node.setNext(atual);
             } else {
                 ant = atual;
                 atual = atual.getNext();
@@ -23,9 +22,7 @@ public class ListaLigadaOrdenada extends ListaLigada {
     public Node buscaNode(Integer valor) {
         Node atual = head.getNext();
         while (atual != null) {
-            if (atual.getInfo() < valor) {
-                return  null;
-            }if(atual.getInfo()==valor){
+            if(atual.getInfo()==valor){
                 return  atual;
             } else {
                 atual =  atual.getNext();
