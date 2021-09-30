@@ -4,28 +4,36 @@ public class ListaLigadaOrdenada extends ListaLigada {
     public void insereNode(Integer valor) {
         Node ant = head;
         Node atual = head.getNext();
+        var node = new Node(valor);
 
-        while (atual != null) {
-            if (atual.getInfo() <= valor) {
-                var node = new Node(valor);
+        var loop = true;
+        while (loop) {
+            if (atual != null) {
+                if (atual.getInfo() <= valor) {
+                    ant.setNext(node);
+                    node.setNext(atual);
+                    loop = false;
+                } else {
+                    ant = atual;
+                    atual = atual.getNext();
+                }
+            } else {
                 ant.setNext(node);
                 node.setNext(atual);
-            } else {
-                ant = atual;
-                atual = atual.getNext();
+                loop = false;
             }
-
         }
+
     }
 
     @Override
     public Node buscaNode(Integer valor) {
         Node atual = head.getNext();
         while (atual != null) {
-            if(atual.getInfo()==valor){
-                return  atual;
+            if (atual.getInfo() == valor) {
+                return atual;
             } else {
-                atual =  atual.getNext();
+                atual = atual.getNext();
             }
         }
         return null;

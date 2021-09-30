@@ -32,6 +32,7 @@ public class Teste {
         System.out.println(listaLigadaOrdenada.buscaNode(1));
         System.out.println(listaLigadaOrdenada.getTamanho()+"");
         System.out.println(listaLigadaOrdenada.removeNode(20)+"");
+        System.out.println(listaLigadaOrdenada.getTamanho()+"");
 
 
     }
