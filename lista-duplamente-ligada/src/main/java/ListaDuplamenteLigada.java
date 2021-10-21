@@ -1,50 +1,54 @@
-public class ListaLigada {
-    protected Node head;
+public class ListaDuplamenteLigada {
+    protected DuplamenteNode head;
 
-    public ListaLigada() {
-        head = new Node(null);
+    public ListaDuplamenteLigada() {
+        head = new DuplamenteNode(null);
     }
 
-    public Node getHead() {
+    public DuplamenteNode getHead() {
         return head;
     }
 
     public void insereNode(Integer valor) {
-        Node novo = new Node(valor);
-        novo.setNext(head.getNext());
-        head.setNext(novo);
+        DuplamenteNode novo = new DuplamenteNode(valor);
+        if (head.getNext() == null){
+            novo.setNext(head.getNext());
+            head.setNext(novo);
+        }else{
+            novo.setNext(head.getNext());
+            head.getNext().setAnt(novo);
+            head.setNext(novo);
+        }
     }
 
     public void exibe() {
-        Node atual = head.getNext();
+        DuplamenteNode atual = head.getNext();
         while (atual != null) {
             System.out.println(atual.getInfo());
             atual = atual.getNext();
         }
     }
 
-    public Node buscaNode(Integer valor) {
-        Node atual = head.getNext();
+    public DuplamenteNode buscaNode(Integer valor) {
+        DuplamenteNode atual = head.getNext();
         while (atual != null) {
             if (atual.getInfo() == valor) {
                 return atual;
             } else {
                 atual = atual.getNext();
             }
-            atual = atual.getNext();
         }
         return null;
     }
 
     public boolean removeNode(Integer valor) {
-        Node ant = head;
-        Node atual = head.getNext();
+        DuplamenteNode atual = head.getNext();
         while (atual != null) {
             if (atual.getInfo() == valor) {
-                ant.setNext(atual.getNext());
+                atual.getAnt().setNext(atual.getNext());
+                atual.getNext().setAnt(atual.getAnt());
                 return true;
             } else {
-                ant = atual;
                 atual = atual.getNext();
             }
         }
@@ -52,7 +56,7 @@ public class ListaLigada {
     }
 
     public Integer getTamanho() {
-        Node atual = head.getNext();
+        DuplamenteNode atual = head.getNext();
         Integer tam = 0;
         while (atual != null) {
             tam++;

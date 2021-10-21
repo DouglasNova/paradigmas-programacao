@@ -1,11 +1,13 @@
-public class Node {
+public class DuplamenteNode {
 
     private Integer info;
-    private Node next;
+    private DuplamenteNode next;
+    private DuplamenteNode ant;
 
-    public Node(Integer info) {
+    public DuplamenteNode(Integer info) {
         this.info = info;
         this.next = null;
+        this.ant = null;
     }
 
     public Integer getInfo() {
@@ -16,17 +18,25 @@ public class Node {
         this.info = info;
     }
 
-    public Node getNext() {
+    public DuplamenteNode getNext() {
         return next;
     }
 
-    public void setNext(Node next) {
+    public void setNext(DuplamenteNode next) {
         this.next = next;
+    }
+
+    public DuplamenteNode getAnt() {
+        return ant;
+    }
+
+    public void setAnt(DuplamenteNode ant) {
+        this.ant = ant;
     }
 
     @Override
     public String toString() {
-        return "Node{" +
+        return "DuplamenteNode{" +
                 "info=" + info +
                 ", next=" + next +
                 '}';
