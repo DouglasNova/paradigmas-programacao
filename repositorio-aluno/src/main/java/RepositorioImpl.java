@@ -2,36 +2,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RepositorioImpl implements Repositorio{
-    protected Aluno head;
+    protected Node head;
 
     public RepositorioImpl() {
-        head = new Aluno(null,null,null);
+        head = new Node(new Aluno(null,null,null));
     }
 
-    public Aluno getHead() {
+    public Node getHead() {
         return head;
     }
 
     @Override
     public Aluno findByRA(String registro) {
-        Aluno atual = head.getNext();
-        while (atual != null) {
-            if (atual.getRa() == registro) {
-                return atual;
-            } else {
-                atual = atual.getNext();
-            }
+        if(!existsByRA(registro)){
+            return null;
         }
-        return null;
+
+        Node nodeAluno = new NodeStream(head)
+                .filter(aluno -> aluno.getRa().equals(registro))
+                .toNode();
+
+        return nodeAluno.getAluno();
     }
 
     @Override
-    public List<Aluno> findBtTurma(String turma) {
-        List<Aluno> lista = new ArrayList<>();
+    public List<Node> findBtTurma(String turma) {
+        List<Node> lista = new ArrayList<>();
 
-        Aluno atual = head.getNext();
+        Node atual = head.getNext();
         while (atual != null) {
-            if (atual.getTurma() == turma) {
+            if (atual.getAluno().getTurma() == turma) {
                 lista.add(atual);
             } else {
                 atual = atual.getNext();
@@ -41,15 +41,15 @@ public class RepositorioImpl implements Repositorio{
     }
 
     @Override
-    public void saveAll(List<Aluno> alunos) {
-        for (Aluno a: alunos) {
+    public void saveAll(List<Node> nodes) {
+        for (Node a: nodes) {
             save(a);
         }
     }
 
     @Override
-    public void save(Aluno aluno) {
-        Aluno novo = aluno;
+    public void save(Node node) {
+        Node novo = node;
         if (head.getNext() == null){
             novo.setNext(head.getNext());
             head.setNext(novo);
@@ -66,10 +66,10 @@ public class RepositorioImpl implements Repositorio{
     }
 
     @Override
-    public void delete(Aluno aluno) {
-        Aluno atual = head.getNext();
+    public void delete(Node node) {
+        Node atual = head.getNext();
         while (atual != null) {
-            if (atual.getRa() == aluno.getRa()) {
+            if (atual.getAluno().getRa() == node.getAluno().getRa()) {
                 atual.getAnt().setNext(atual.getNext());
                 atual.getNext().setAnt(atual.getAnt());
             } else {
@@ -80,7 +80,7 @@ public class RepositorioImpl implements Repositorio{
 
     @Override
     public int count() {
-        Aluno atual = head.getNext();
+        Node atual = head.getNext();
         Integer tam = 0;
         while (atual != null) {
             tam++;
@@ -90,10 +90,10 @@ public class RepositorioImpl implements Repositorio{
     }
 
     @Override
-    public boolean exists(Aluno aluno) {
-        Aluno atual = head.getNext();
+    public boolean exists(Node node) {
+        Node atual = head.getNext();
         while (atual != null) {
-            if (atual == aluno) {
+            if (atual == node) {
                 return true;
             } else {
                 atual = atual.getNext();
@@ -104,9 +104,9 @@ public class RepositorioImpl implements Repositorio{
 
     @Override
     public boolean existsByRA(String registro) {
-        Aluno atual = head.getNext();
+        Node atual = head.getNext();
         while (atual != null) {
-            if (atual.getRa() == registro) {
+            if (atual.getAluno().getRa() == registro) {
                 return true;
             } else {
                 atual = atual.getNext();
@@ -118,12 +118,8 @@ public class RepositorioImpl implements Repositorio{
 
     @Override
     public List<Aluno> findAll(){
-        List<Aluno> lista = new ArrayList<>();
-        Aluno atual = head.getNext();
-        while (atual != null) {
-            lista.add(atual);
-            atual = atual.getNext();
-        }
-        return lista;
+        List<Aluno> list = new ArrayList<>();
+        new NodeStream(head).forEach(item -> list.add(item));
+        return list;
     }
 }

@@ -2,15 +2,15 @@ import java.util.List;
 
 public interface Repositorio {
 
-    List<Aluno> findAll();
+    List<Aluno>findAll();
     Aluno findByRA(String registro);
-    List<Aluno> findBtTurma(String turma);
-    void saveAll(List<Aluno> alunos);
-    void save(Aluno aluno);
+    List<Node> findBtTurma(String turma);
+    void saveAll(List<Node> nodes);
+    void save(Node node);
     void deleteAll();
-    void delete(Aluno aluno);
+    void delete(Node node);
     int count();
-    boolean exists(Aluno aluno);
+    boolean exists(Node node);
     boolean existsByRA(String registro);
 
 
